@@ -18,11 +18,11 @@ function renderList () {
         const dueDate = todo.dueDate;
         const html = `
             <div class="display-container">
-                <p>${taskName} ${dueDate}</p>
+                <span class="task-display">${taskName} </span> <span class="task-date">${dueDate}</span>
                 <button onclick="
                     todoList.splice(${i}, 1);
                     renderList();
-                ">Delete</button>
+                " class="button">Delete</button>
             </div>
         `;
         todoListHTML += html;
@@ -44,7 +44,11 @@ function addTask () {
     };
 
      // Push the new task to the todoList array
-     todoList.push(newTodo);
+    if (newTaskName === "" || newDueDate === "") {
+        alert("Invalid Task");
+    } else {
+        todoList.push(newTodo);
+    }
 
     // Log the updated todoList array
     // console.log(todoList);
