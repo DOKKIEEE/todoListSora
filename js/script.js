@@ -12,25 +12,53 @@ function renderList () {
     // var for new html
     let todoListHTML = '';
 
-    for(let i = 0; i  < todoList.length; i++) {
-        const todo = todoList[i];
+    todoList.forEach((value) => {
+        const todo = value;
         const taskName = todo.taskName;
         const dueDate = todo.dueDate;
         const html = `
             <div class="display-container">
                 <span class="task-display">${taskName} </span> <span class="task-date">${dueDate}</span>
-                <button onclick="
-                    todoList.splice(${i}, 1);
-                    renderList();
-                " class="button">Delete</button>
+                <button class="delete-button">
+                    Delete
+                </button>
             </div>
         `;
         todoListHTML += html;
-    }
+    });
+
+    // for(let i = 0; i  < todoList.length; i++) {
+    //     const todo = todoList[i];
+    //     const taskName = todo.taskName;
+    //     const dueDate = todo.dueDate;
+    //     const html = `
+    //         <div class="display-container">
+    //             <span class="task-display">${taskName} </span> <span class="task-date">${dueDate}</span>
+    //             <button onclick="
+    //                 todoList.splice(${i}, 1);
+    //                 renderList();
+    //             " class="button">Delete</button>
+    //         </div>
+    //     `;
+    //     todoListHTML += html;
+    // }
 
     // console.log(todoListHTML);
     document.querySelector('.js-display').innerHTML = todoListHTML;
+
+    document.querySelectorAll('.delete-button')
+        .forEach((deleteButton, index) => {
+            deleteButton.addEventListener('click', () => {
+                todoList.splice(index, 1);
+                renderList();
+            });
+        });
 };
+
+document.querySelector('.add-button')
+.addEventListener('click', () => {
+    addTask();
+});
 
 function addTask () {
     const inputNameElement = document.querySelector('.js-task-name');

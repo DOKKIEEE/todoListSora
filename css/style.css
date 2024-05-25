@@ -15,7 +15,7 @@ body {
     align-items: center;
 }
 
-.button {
+.add-button, .delete-button{
     height: 32px;
     width: 72px;
     background-color: aqua;
